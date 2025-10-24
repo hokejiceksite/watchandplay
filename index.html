@@ -1,40 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WatchAndPlay.one</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎬 WatchAndPlay.one</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* === GLOBAL === */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:radial-gradient(circle at 30% 30%, #1a1a1a, #0d0d0d 80%);
+  color:#eee;
+  font-family:'Poppins',sans-serif;
+  overflow-x:hidden;
+}
+
+/* === NAVBAR === */
+header{
+  width:100%;
+  background:#111;
+  border-bottom:1px solid #222;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 40px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+header h1{
+  font-size:22px;
+  font-weight:700;
+  color:#ffd166;
+  letter-spacing:1px;
+}
+nav{display:flex;gap:20px;}
+nav a{color:#ccc;text-decoration:none;font-weight:600;transition:.3s;}
+nav a:hover,nav a.active{color:#ffd166;}
+
+/* === HERO === */
+.hero{
+  text-align:center;
+  padding:100px 20px 60px;
+  background:url('https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=1400&q=60') center/cover no-repeat;
+  position:relative;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,0.6);
+}
+.hero h1,.hero p,.hero input{position:relative;z-index:2;}
+.hero h1{font-size:38px;color:#ffd166;margin-bottom:10px;}
+.hero p{font-size:18px;color:#ccc;margin-bottom:25px;}
+.hero input{
+  width:320px;padding:12px 16px;border:none;border-radius:8px;
+  background:#111;color:#fff;outline:none;
+  box-shadow:0 0 20px rgba(255,204,102,0.3);
+}
+
+/* === MOVIE GRID === */
+.movies{padding:50px 60px;}
+.movies h2{color:#ffd166;margin-bottom:20px;font-size:26px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:25px;}
+.card{
+  background:#181818;border-radius:12px;overflow:hidden;
+  transition:.3s;box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+.card:hover{transform:scale(1.04);box-shadow:0 0 35px rgba(255,204,102,0.3);}
+.card img{
+  width:100%;
+  height:340px;
+  object-fit:contain;
+  background-color:#111;
+  padding:8px;
+  border-radius:10px;
+}
+.card h3{padding:12px;font-size:18px;color:#fff;}
+
+/* === FOOTER === */
+footer{text-align:center;padding:25px;color:#aaa;border-top:1px solid #222;background:#111;margin-top:60px;}
+</style>
 </head>
 
 <body>
-  <header>
-    <h1>🎬 WatchAndPlay<span>.one</span></h1>
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="movies/index.html">Movies</a>
-      <a href="requests/index.html">Requests</a>
-      <a href="events/index.html">Events</a>
-      <a href="about/index.html">About</a>
-    </nav>
-  </header>
+<header>
+  <h1>🎬 WatchAndPlay.one</h1>
+  <nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="movies.html">Movies</a>
+    <a href="requests.html">Requests</a>
+    <a href="events.html">Events</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
 
-  <section class="hero">
-    <h2>Welcome to WatchAndPlay.one 🍿</h2>
-    <p>Discover, request and watch your favorite movies together.</p>
-    <input type="text" id="search" placeholder="Search movies...">
-  </section>
+<section class="hero">
+  <h1>Welcome to WatchAndPlay.one 🍿</h1>
+  <p>Discover, request and watch your favorite movies together.</p>
+  <input type="text" id="search" placeholder="Search movies...">
+</section>
 
-  <section class="featured">
-    <h2>🎞️ Featured Movies</h2>
-    <div class="grid" id="featuredMovies"></div>
-  </section>
+<section class="movies">
+  <h2>🎞️ Featured Movies</h2>
+  <div class="grid" id="movieList"></div>
+</section>
 
-  <footer>© 2025 WatchAndPlay.one | Made for movie lovers 🎥</footer>
-  <script src="assets/js/script.js"></script>
+<footer>© 2025 WatchAndPlay.one | Made for movie lovers 🎥</footer>
+
+<script>
+const MOVIES=[
+  {id:"inception",title:"Inception",year:2010,img:"https://play-lh.googleusercontent.com/tCB_diVIlw3_4pXPVkJquOzhxy3x3qCMTHycLKmfZbkfgvWJF9jRFzy4NKOThbPR3erLgXqRVc7Hf7n0PPI=w240-h480-rw"},
+  {id:"interstellar",title:"Interstellar",year:2014,img:"https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p10543523_p_v8_as.jpg"},
+  {id:"oppenheimer",title:"Oppenheimer",year:2023,img:"https://theempiretheatre.com/uploads/2023/09/Empire-Movie-site-Oppenheimer.jpg"}
+];
+
+const list=document.getElementById("movieList");
+MOVIES.forEach(m=>{
+  const a=document.createElement("a");
+  a.className="card";
+  a.href=`movie.html?id=${m.id}`;
+  a.innerHTML=`<img src="${m.img}" alt="${m.title}"><h3>${m.title} (${m.year})</h3>`;
+  list.appendChild(a);
+});
+
+document.getElementById("search").addEventListener("input",e=>{
+  const q=e.target.value.toLowerCase();
+  document.querySelectorAll(".card").forEach(c=>{
+    c.style.display=c.textContent.toLowerCase().includes(q)?"":"none";
+  });
+});
+</script>
 </body>
 </html>
