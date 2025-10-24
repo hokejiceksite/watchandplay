@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie | WatchAndPlay.one</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{background:#0d0d0d;color:#eee;font-family:'Poppins',sans-serif;margin:0;}
+header{background:#141414;padding:15px 40px;color:#ffd166;border-bottom:1px solid #333;}
+.container{display:flex;flex-wrap:wrap;gap:20px;padding:40px;}
+img{width:300px;border-radius:10px;}
+.info{max-width:600px;}
+iframe{width:100%;height:400px;margin-top:30px;border:none;border-radius:10px;}
+footer{text-align:center;padding:20px;color:#999;}
+</style>
+</head>
+<body>
+<header><h1>🎬 Movie</h1></header>
+<div class="container">
+  <img id="poster">
+  <div class="info">
+    <h2 id="title"></h2>
+    <p id="desc"></p>
+  </div>
+</div>
+<iframe id="trailer" allowfullscreen></iframe>
+<footer>© 2025 WatchAndPlay.one</footer>
+<script>
+const MOVIES={
+  inception:{title:"Inception (2010)",desc:"A mind-bending thriller by Christopher Nolan.",poster:"https://m.media-amazon.com/images/I/51xJr4rGQzL._AC_.jpg",trailer:"https://www.youtube.com/embed/YoHD9XEInc0"},
+  interstellar:{title:"Interstellar (2014)",desc:"Humanity seeks a new home among the stars.",poster:"https://m.media-amazon.com/images/I/71n7VYDn5CL._AC_SL1500_.jpg",trailer:"https://www.youtube.com/embed/zSWdZVtXT7E"},
+  oppenheimer:{title:"Oppenheimer (2023)",desc:"The story of the atomic bomb’s creator.",poster:"https://m.media-amazon.com/images/I/91EJZ7k2+VL._AC_SL1500_.jpg",trailer:"https://www.youtube.com/embed/uYPbbksJxIg"}
+};
+const id=new URLSearchParams(location.search).get("id");
+if(MOVIES[id]){
+  const m=MOVIES[id];
+  document.getElementById("poster").src=m.poster;
+  document.getElementById("title").textContent=m.title;
+  document.getElementById("desc").textContent=m.desc;
+  document.getElementById("trailer").src=m.trailer;
+}
+</script>
+</body>
+</html>
