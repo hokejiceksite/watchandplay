@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movies | WatchAndPlay.one</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{background:#0d0d0d;color:#eee;font-family:'Poppins',sans-serif;margin:0;padding:0;}
+header{background:#141414;display:flex;justify-content:space-between;align-items:center;padding:15px 40px;border-bottom:1px solid #333;}
+header h1{color:#ffd166;}nav a{color:#ccc;margin-left:20px;text-decoration:none;}
+nav a:hover{color:#fff;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;padding:40px;}
+.card{background:#181818;border-radius:10px;overflow:hidden;transition:.3s;}
+.card:hover{transform:scale(1.04);box-shadow:0 0 25px rgba(255,204,102,0.2);}
+.card img{width:100%;height:300px;object-fit:cover;}
+.card h3{padding:12px;color:#fff;}
+footer{text-align:center;padding:20px;color:#999;border-top:1px solid #222;}
+</style>
+</head>
+<body>
+<header><h1>🎞️ Movies</h1><nav><a href="index.html">Home</a><a href="movies.html" class="active">Movies</a><a href="requests.html">Requests</a><a href="events.html">Events</a><a href="about.html">About</a></nav></header>
+<div class="grid" id="movieList"></div>
+<footer>© 2025 WatchAndPlay.one</footer>
+<script>
+const MOVIES=[
+{id:"inception",title:"Inception",year:2010,img:"https://play-lh.googleusercontent.com/tCB_diVIlw3_4pXPVkJquOzhxy3x3qCMTHycLKmfZbkfgvWJF9jRFzy4NKOThbPR3erLgXqRVc7Hf7n0PPI=w240-h480-rw"},
+{id:"interstellar",title:"Interstellar",year:2014,img:"https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p10543523_p_v8_as.jpg"},
+{id:"oppenheimer",title:"Oppenheimer",year:2023,img:"https://theempiretheatre.com/uploads/2023/09/Empire-Movie-site-Oppenheimer.jpg"}
+];
+const list=document.getElementById("movieList");
+MOVIES.forEach(m=>{
+  const a=document.createElement("a");
+  a.className="card";
+  a.href=`movie.html?id=${m.id}`;
+  a.innerHTML=`<img src="${m.img}"><h3>${m.title} (${m.year})</h3>`;
+  list.appendChild(a);
+});
+</script>
+</body>
+</html>
