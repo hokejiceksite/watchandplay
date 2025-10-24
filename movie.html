@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Movie | WatchAndPlay.one</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 body{background:#0d0d0d;color:#eee;font-family:'Poppins',sans-serif;margin:0;}
-header{background:#141414;padding:15px 40px;color:#ffd166;border-bottom:1px solid #333;}
-.container{display:flex;flex-wrap:wrap;gap:20px;padding:40px;}
-img{width:300px;border-radius:10px;}
+header{background:#111;border-bottom:1px solid #222;display:flex;justify-content:space-between;align-items:center;padding:10px 40px;position:sticky;top:0;z-index:10;}
+header h1{font-size:22px;font-weight:700;color:#ffd166;}
+nav{display:flex;gap:20px;}
+nav a{color:#ccc;text-decoration:none;font-weight:600;}
+nav a:hover,nav a.active{color:#ffd166;}
+.container{display:flex;flex-wrap:wrap;gap:30px;padding:40px;}
+img{width:320px;border-radius:12px;background:#111;padding:8px;}
 .info{max-width:600px;}
-iframe{width:100%;height:400px;margin-top:30px;border:none;border-radius:10px;}
-footer{text-align:center;padding:20px;color:#999;}
+iframe{width:100%;height:420px;margin-top:30px;border:none;border-radius:10px;}
+footer{text-align:center;padding:20px;color:#999;border-top:1px solid #222;background:#111;margin-top:40px;}
 </style>
 </head>
 <body>
-<header><h1>🎬 Movie</h1></header>
+<header>
+  <h1>🎬 WatchAndPlay.one</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="movies.html">Movies</a>
+    <a href="requests.html">Requests</a>
+    <a href="events.html">Events</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
 <div class="container">
   <img id="poster">
   <div class="info">
@@ -25,12 +38,14 @@ footer{text-align:center;padding:20px;color:#999;}
   </div>
 </div>
 <iframe id="trailer" allowfullscreen></iframe>
+
 <footer>© 2025 WatchAndPlay.one</footer>
+
 <script>
 const MOVIES={
-  inception:{title:"Inception (2010)",desc:"A mind-bending thriller by Christopher Nolan.",poster:"https://m.media-amazon.com/images/I/51xJr4rGQzL._AC_.jpg",trailer:"https://www.youtube.com/embed/YoHD9XEInc0"},
-  interstellar:{title:"Interstellar (2014)",desc:"Humanity seeks a new home among the stars.",poster:"https://m.media-amazon.com/images/I/71n7VYDn5CL._AC_SL1500_.jpg",trailer:"https://www.youtube.com/embed/zSWdZVtXT7E"},
-  oppenheimer:{title:"Oppenheimer (2023)",desc:"The story of the atomic bomb’s creator.",poster:"https://m.media-amazon.com/images/I/91EJZ7k2+VL._AC_SL1500_.jpg",trailer:"https://www.youtube.com/embed/uYPbbksJxIg"}
+  inception:{title:"Inception (2010)",desc:"A mind-bending thriller by Christopher Nolan.",poster:"https://play-lh.googleusercontent.com/tCB_diVIlw3_4pXPVkJquOzhxy3x3qCMTHycLKmfZbkfgvWJF9jRFzy4NKOThbPR3erLgXqRVc7Hf7n0PPI=w240-h480-rw",trailer:"https://www.youtube.com/embed/YoHD9XEInc0"},
+  interstellar:{title:"Interstellar (2014)",desc:"Humanity seeks a new home among the stars.",poster:"https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p10543523_p_v8_as.jpg",trailer:"https://www.youtube.com/embed/zSWdZVtXT7E"},
+  oppenheimer:{title:"Oppenheimer (2023)",desc:"The story of the atomic bomb’s creator.",poster:"https://theempiretheatre.com/uploads/2023/09/Empire-Movie-site-Oppenheimer.jpg",trailer:"https://www.youtube.com/embed/uYPbbksJxIg"}
 };
 const id=new URLSearchParams(location.search).get("id");
 if(MOVIES[id]){
