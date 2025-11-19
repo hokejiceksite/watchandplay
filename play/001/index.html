@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StarStreams | Fullscreen Blue Player</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+
+    #player {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .clappr-container .media-control .seekbar-fill {
+      background-color: #1e90ff !important;
+    }
+
+    .clappr-container .media-control .seekbar-hover {
+      background-color: rgba(30, 144, 255, 0.6) !important;
+    }
+
+    .clappr-container .media-control .media-control-icon {
+      color: #1e90ff !important;
+      fill: #1e90ff !important;
+    }
+
+    .clappr-container .media-control .media-control-indicator {
+      color: #1e90ff !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="player"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var player = new Clappr.Player({
+        parentId: "#player",
+        source: "https://lasvideoblobs1prod-standard.b-cdn.net/vods/blobs1/691466b01ea1b60e809f2330.m3u8",
+        autoPlay: true,
+        mute: true,
+        height: "100%",
+        width: "100%"
+      });
+    });
+  </script>
+</body>
+</html>
